@@ -1,12 +1,12 @@
 import express from 'express';
-
 const app = express();
+
+import setupRoutes from './routes';
+
 var cors = require('cors')
 app.use(cors())
 
-import {indexRoute} from '../controller/indexController';
-
-app.use('/',indexRoute);
+setupRoutes(app);
 
 const PORT = 3333;
 const HOST = 'localhost';

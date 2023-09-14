@@ -64,18 +64,26 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
    ```sh
    npx prisma init
    ```
-5. Adicione ao .env
+5. Adicione ao .env (Caso não exista, crie)
     ```js
-   DATABASE_URL="postgresql://postgres:[password]@localhost:5432/kitsuraproject?schema=public"
+   DATABASE_URL="postgresql://[user]:[password]@localhost:5432/kitsuraproject?schema=public"
    ```
-6. Faça a migração do seu banco via Prisma
+6. Inicie a migração do banco via Prisma
     ```sh
    npx prisma migrate dev
    ```
-
-5. Inicie o projeto
+7. Faça o deploy da base para o banco de dados
+  ```sh
+   npx prisma migrate deploy
+   ```
+8. Inicie o projeto
     ```sh
    npx ts-node src/config/server.ts
+   ```
+
+9. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
+  ```sh
+   https://localhost.com:5050
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
