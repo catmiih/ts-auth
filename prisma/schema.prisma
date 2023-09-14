@@ -11,7 +11,106 @@ datasource db {
 }
 
 model User {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
-  name  String?
+  id             Int      @id @default(autoincrement())
+  username       String   @unique
+  password       String
+  email          String
+  created_at     DateTime
+  account_status String
+
+  person         Person?
+  portfolio      Portfolio?
+  alert          Alert[]
+}
+
+model Person {
+  id            Int       @id @default(autoincrement())
+  name          String
+  birthday_date DateTime
+  user          User?     @relation(fields: [userId], references: [id])
+  userId        Int?      @unique
+}
+
+
+model Portfolio {
+  id            Int       @id @default(autoincrement())
+  port_value    Decimal
+  income_value  Decimal
+  user          User?     @relation(fields: [userId], references: [id])
+  userId        Int?      @unique
+
+  transactions Transaction[]
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+
+  active Int
+
+  port      Portfolio?     @relation(fields: [port_numb], references: [id])
+  port_numb  Int?           @unique
+
+  quota_count Int
+  total_value Decimal
+  trade_date DateTime
+}
+
+model Active {
+  id Int @id @default(autoincrement())
+  shortname String
+  fullname String
+
+  type ActiveType?
+
+  active_history ActiveHistory[]
+  dividend_history dividendHistory[]
+  alert Alert[]
+}
+
+model ActiveType {
+  id Int @id @default(autoincrement())
+  type String
+  sub_type String
+
+  active    Active?     @relation(fields: [activeid], references: [id])
+  activeid  Int?           @unique
+}
+
+model ActiveHistory {
+  id Int @id @default(autoincrement())
+
+  data_time DateTime
+  quota_value Decimal
+  valuation Decimal
+
+  active    Active?     @relation(fields: [activeid], references: [id])
+  activeid  Int?           @unique
+}
+
+model dividendHistory {
+  id Int @id @default(autoincrement())
+
+  data_time DateTime
+  dividend_yield Decimal
+  value Decimal
+
+  active    Active?     @relation(fields: [activeid], references: [id])
+  activeid  Int?           @unique
+}
+
+model Alert {
+  id Int @id @default(autoincrement())
+
+  active    Active?     @relation(fields: [activeid], references: [id])
+  activeid  Int?           @unique
+
+  user    User?     @relation(fields: [userid], references: [id])
+  userid  Int?           @unique
+
+  type String
+  action String
+
+  created_at DateTime
+  message String
+
 }
