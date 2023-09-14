@@ -1,13 +1,10 @@
 import express from "express";
-import { PrismaClient } from '@prisma/client'
+import { userControllerRoutes } from "../controller/UserController";
 
-const prisma = new PrismaClient()
-const app = express.Router();
+export default function setupRoutes(app: express.Application) {
 
-app.use(express.json());
+    // Monte as rotas dos controladores aqui
+    app.use('/user', userControllerRoutes);
 
-export default app;
-
-export interface routes {
-    //Armazenar todas as controllers aqui
+    // Você pode adicionar mais controladores aqui conforme necessário
 }
