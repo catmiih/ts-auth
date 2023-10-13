@@ -1,39 +1,12 @@
-# version: '3'
-
-# services:
-#   db:
-#     image: postgres
-#     restart: always
-#     volumes:
-#      - pgdata:/var/lib/postgresql/data
-#     environment:
-#       POSTGRES_PASSWORD: run123
-#     ports:
-#       - 5432:5432
-#   pgadmin:
-#     image: dpage/pgadmin4
-#     container_name: pgadmin4_container
-#     restart: always
-#     ports:
-#       - "5050:80"
-#     environment:
-#       PGADMIN_DEFAULT_EMAIL: kitsura
-#       PGADMIN_DEFAULT_PASSWORD: admin
-#     volumes:
-#       - pgadmin-data:/var/lib/pgadmin
-# volumes:
-#   pgdata:
-#   pgadmin-data:
-
 version: '3'
 services:
   postgres:
     image: postgres:latest
     container_name: kitsura-postgres
     environment:
-      POSTGRES_USER: kitsura
-      POSTGRES_PASSWORD: run123
-      POSTGRES_DB: kitsuraproject
+      POSTGRES_USER: [username]
+      POSTGRES_PASSWORD: [password]
+      POSTGRES_DB: [databasename]
     ports:
       - "5432:5432"
     volumes:
@@ -43,8 +16,8 @@ services:
     image: dpage/pgadmin4
     container_name: kitsura-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: kitsura@admin.com
-      PGADMIN_DEFAULT_PASSWORD: run123
+      PGADMIN_DEFAULT_EMAIL: [email]
+      PGADMIN_DEFAULT_PASSWORD: [password]
     ports:
       - "5050:80"
     depends_on:
