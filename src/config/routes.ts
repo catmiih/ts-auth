@@ -1,10 +1,10 @@
 import express from "express";
-import { userControllerRoutes } from "../controller/UserController";
+import { UserController } from "../controller/UserController";
+import { TestController } from "../controller/TestController";
 
 export default function setupRoutes(app: express.Application) {
 
-    // Monte as rotas dos controladores aqui
-    app.use('/user', userControllerRoutes);
-
-    // Você pode adicionar mais controladores aqui conforme necessário
+    // All routes of project
+    app.use('/', TestController);
+    app.use('/user', UserController);
 }
