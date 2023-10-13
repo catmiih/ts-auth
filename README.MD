@@ -81,11 +81,13 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
    DATABASE_URL="postgresql://[user]:[password]@localhost:5432/kitsuraproject?schema=public"
    ```
 7. Gere uma API KEY de sua escolha e altere no arquivo .env
-  ```js
-   API_KEY=[my api-key]
-   ```
+    ```js
+     API_KEY=[my api-key]
+     ```
 8. Acesse o postman e importe a documentação da API (kitsura-api.json) presente na raiz do projeto;
+
 9. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env;
+
 10. Inicie a migração do banco via Prisma
     ```sh
    npx prisma migrate dev
