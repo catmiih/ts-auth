@@ -89,21 +89,21 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
 9. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env;
 
 10. Inicie a migração do banco via Prisma
-    ```sh
-   npx prisma migrate dev
-   ```
+    ```js
+     npx prisma migrate dev
+     ```
 11. Faça o deploy dos dados para o banco de dados
-  ```sh
-   npx prisma migrate deploy
-   ```
+    ```sh
+    npx prisma migrate deploy
+    ```
 12. Inicie o projeto
     ```sh
    npx ts-node src/config/server.ts
    ```
 13. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
-  ```sh
-   https://localhost.com:5050
-   ```
+    ```sh
+     https://localhost.com:5050
+     ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
