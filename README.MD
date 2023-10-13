@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/catmiih/server-kitsura">
-    <img src="blob:https://imgur.com/6ffb5803-596d-4dd7-b511-3eb69f5f0a30" alt="Logo" width="80" height="80">
+    <img src="https://i.imgur.com/Snb9Vvk.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Projeto Kitsura</h3>
