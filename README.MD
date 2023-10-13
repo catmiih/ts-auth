@@ -84,19 +84,21 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
   ```js
    API_KEY=[my api-key]
    ```
-7. Inicie a migração do banco via Prisma
+7. Acesse o postman e importe a documentação da API (kitsura-api.json) presente na raiz do projeto
+8. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env
+9. Inicie a migração do banco via Prisma
     ```sh
    npx prisma migrate dev
    ```
-8. Faça o deploy dos dados para o banco de dados
+10. Faça o deploy dos dados para o banco de dados
   ```sh
    npx prisma migrate deploy
    ```
-9. Inicie o projeto
+11. Inicie o projeto
     ```sh
    npx ts-node src/config/server.ts
    ```
-10. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
+12. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
   ```sh
    https://localhost.com:5050
    ```
