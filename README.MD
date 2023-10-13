@@ -53,17 +53,17 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
    git clone https://github.com/catmiih/server-kitsura.git
    ```
 2. Acesse o arquivo docker-compose.yml e personalize os campos como preferir
-  ```js
-   environment:
-      POSTGRES_USER: [username]
-      POSTGRES_PASSWORD: [password]
-      POSTGRES_DB: [databasename]
-    ~
-    //Para acesso ao pgAdmin
+    ```js
      environment:
-      PGADMIN_DEFAULT_EMAIL: [email]
-      PGADMIN_DEFAULT_PASSWORD: [password]
-   ```
+        POSTGRES_USER: [username]
+        POSTGRES_PASSWORD: [password]
+        POSTGRES_DB: [databasename]
+      ~
+      //Para acesso ao pgAdmin
+       environment:
+        PGADMIN_DEFAULT_EMAIL: [email]
+        PGADMIN_DEFAULT_PASSWORD: [password]
+     ```
 3. Execute a imagem docker
     ```sh
    docker-compose up -d
@@ -84,8 +84,8 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
   ```js
    API_KEY=[my api-key]
    ```
-7. Acesse o postman e importe a documentação da API (kitsura-api.json) presente na raiz do projeto
-8. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env
+7. Acesse o postman e importe a documentação da API (kitsura-api.json) presente na raiz do projeto;
+8. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env;
 9. Inicie a migração do banco via Prisma
     ```sh
    npx prisma migrate dev
