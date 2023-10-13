@@ -97,9 +97,9 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
     npx prisma migrate deploy
     ```
 12. Inicie o projeto
-    ```sh
-   npx ts-node src/config/server.ts
-   ```
+    ```js
+     npx ts-node src/config/server.ts
+     ```
 13. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
     ```sh
      https://localhost.com:5050
