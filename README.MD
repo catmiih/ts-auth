@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/catmiih/server-kitsura">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="blob:https://imgur.com/6ffb5803-596d-4dd7-b511-3eb69f5f0a30" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Projeto Kitsura</h3>
@@ -20,7 +20,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre o projeto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://i.imgur.com/pDjW9gt.png)
 Bem-vindo ao Kitsura, sua plataforma abrangente de controle financeiro de mercado. Com Kitsura, você mergulha no mundo das finanças com uma ferramenta poderosa que oferece uma visão detalhada e precisa dos seus investimentos em ações.
 <br>
 "Kitsura". Essa palavra combina "Kitsu" da raposa kitsune com "ura", que é uma parte da palavra japonesa "uraomote" usada para descrever os aspectos ocultos e visíveis de uma situação. "Kitsura" pode representar a capacidade do seu sistema de revelar e gerenciar os aspectos ocultos do mercado financeiro.
@@ -31,7 +31,7 @@ Bem-vindo ao Kitsura, sua plataforma abrangente de controle financeiro de mercad
 <!-- GETTING STARTED -->
 ## Iniciando o projeto
 
-Para colocar a api para rodar é simples, apenas siga os passos a seguir.
+Segue abaixo os passos para rodar o projeto localmente:
 
 ### Pre requisitos
 
@@ -46,42 +46,59 @@ Para executar o projeto há alguns pré-requisitos, sendo eles:
   apt-get install docker docker-compose
   ```
 
-### Installation
+### Configuração
 
 1. Clone o repositório
    ```sh
-   git clone https://github.com/catmiih/kitsura.git
+   git clone https://github.com/catmiih/server-kitsura.git
    ```
-2. Execute a imagem docker
+2. Acesse o arquivo docker-compose.yml e personalize os campos como preferir
+  ```js
+   environment:
+      POSTGRES_USER: [username]
+      POSTGRES_PASSWORD: [password]
+      POSTGRES_DB: [databasename]
+    ~
+    //Para acesso ao pgAdmin
+     environment:
+      PGADMIN_DEFAULT_EMAIL: [email]
+      PGADMIN_DEFAULT_PASSWORD: [password]
+   ```
+3. Execute a imagem docker
     ```sh
    docker-compose up -d
    ```
-3. Instale os pacotes NPM
+4. Instale os pacotes NPM
    ```sh
    npm install
    ```
-4. Inicie o Prisma
+5. Inicie o Prisma
    ```sh
    npx prisma init
    ```
-5. Adicione ao .env (Caso não exista, crie)
+6. Clone o arquivo .env_example, renomeie para .env e altere a propriedade de acesso ao banco (Altere os campos com os acessos do docker)
     ```js
    DATABASE_URL="postgresql://[user]:[password]@localhost:5432/kitsuraproject?schema=public"
    ```
-6. Inicie a migração do banco via Prisma
+6. Gere uma API KEY de sua escolha e altere no arquivo .env
+  ```js
+   API_KEY=[my api-key]
+   ```
+7. Acesse o postman e importe a documentação da API (kitsura-api.json) presente na raiz do projeto
+8. Altere as variaveis para o seu localhost (caso tenha alterado) e a api-key para a adicionada no .env
+9. Inicie a migração do banco via Prisma
     ```sh
    npx prisma migrate dev
    ```
-7. Faça o deploy da base para o banco de dados
+10. Faça o deploy dos dados para o banco de dados
   ```sh
    npx prisma migrate deploy
    ```
-8. Inicie o projeto
+11. Inicie o projeto
     ```sh
    npx ts-node src/config/server.ts
    ```
-
-9. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
+12. (Opcional) Caso julgue necessário, é possível acessar as informações do banco via PgAdmin
   ```sh
    https://localhost.com:5050
    ```
