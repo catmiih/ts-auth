@@ -4,7 +4,7 @@ class Person {
   id: number | undefined;
   name: string | undefined;
   birthday_date: Date | undefined;
-  user: User | null | undefined;
+  user?: User | null | undefined;
 
   constructor(data: Partial<Person> = {}) {
     Object.assign(this, data);
