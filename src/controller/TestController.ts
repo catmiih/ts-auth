@@ -3,7 +3,7 @@ import express from "express";
 const router = express.Router();
 
 router.get("/test", async (request, response) => {
-  console.log("API Is Working!");
+  response.status(200).json({ status: 'API Validada' });
   response.send("Test route working!");
 });
 
