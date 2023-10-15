@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/catmiih/server-kitsura">
-    <img src="https://i.imgur.com/Snb9Vvk.png" alt="Logo" width="80" height="80">
+    <img src="https://i.imgur.com/Snb9Vvk.png" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">Projeto Kitsura</h3>
@@ -19,8 +19,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Sobre o projeto
-
-[![Product Name Screen Shot][product-screenshot]](https://i.imgur.com/pDjW9gt.png)
+<img src="https://i.imgur.com/pDjW9gt.png" alt="Screenshot" height="400">
+<br>
 Bem-vindo ao Kitsura, sua plataforma abrangente de controle financeiro de mercado. Com Kitsura, você mergulha no mundo das finanças com uma ferramenta poderosa que oferece uma visão detalhada e precisa dos seus investimentos em ações.
 <br>
 "Kitsura". Essa palavra combina "Kitsu" da raposa kitsune com "ura", que é uma parte da palavra japonesa "uraomote" usada para descrever os aspectos ocultos e visíveis de uma situação. "Kitsura" pode representar a capacidade do seu sistema de revelar e gerenciar os aspectos ocultos do mercado financeiro.
