@@ -1,8 +1,10 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import Filter from "../model/Filter";
 import User from "../model/User";
+import PortfolioService from "./PortfolioService";
 
 const prisma = new PrismaClient();
+const portfolioService = new PortfolioService();
 
 class UserService {
   // Função para criar um novo usuário
@@ -21,6 +23,15 @@ class UserService {
         created_at: new Date(),
         person: {
           create: person,
+        },
+        portfolio: {
+          create: [
+            {
+              port_value: 0.0,
+              income_value: 0,
+              risk: 1,
+            },
+          ],
         },
       };
 
@@ -51,6 +62,8 @@ class UserService {
       where: {userId: filter.id}
     });
 
+    const portData = await portfolioService.getWallet(filter.id);
+
     
   if (userData && personData) {
     user = new User({
@@ -61,10 +74,54 @@ class UserService {
       created_at: userData.created_at,
       account_status: userData.account_status,
       person: personData,
+      portfolio: portData
     })
   }
 
     return user;
+  }
+  // Função para listar usuários por Filter
+  async listUsers(filter: Filter) {
+    let userList = [];
+
+    const users = await prisma.user.findMany({
+      where: { 
+        OR:[
+          {id: filter.id},
+          {username: filter.username},
+          {email: filter.email},
+          {account_status: filter.account_status},
+          {person: {name:filter.person?.name}}
+        ],
+      },
+    });
+
+    for(let userData of users){
+
+      let user;
+      const personData = await prisma.person.findUnique({
+        where: {userId: userData.id}
+      });
+  
+      const portData = await portfolioService.getWallet(userData.id);
+  
+      if (userData && personData) {
+        user = new User({
+          id: userData.id,
+          username: userData.username,
+          password: userData.password,
+          email: userData.email,
+          created_at: userData.created_at,
+          account_status: userData.account_status,
+          person: personData,
+          portfolio: portData
+        })
+
+        userList.push(user)
+      }
+    }
+
+    return userList;
   }
 
   // Função para atualizar um usuário por ID
@@ -95,9 +152,23 @@ class UserService {
   // Função para excluir um usuário por ID
   async deleteUser(filter: Filter) {
     try{
-      const user = await prisma.user.delete({
-        where: { id: filter.id },
+
+      await prisma.portfolio.deleteMany({
+        where: { userId: filter.id }
       });
+  
+     await prisma.alert.deleteMany({
+        where: { userid: filter.id }
+      });
+  
+      await prisma.person.delete({
+        where: { userId: filter.id }
+      });
+
+      const user = await prisma.user.delete({
+        where: { id: filter.id }
+      });
+
       return user;
     }catch(error:any){
       if (error.code === 'P2025') {

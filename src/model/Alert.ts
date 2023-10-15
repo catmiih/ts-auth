@@ -4,7 +4,7 @@ import Active from './Active';
 class Alert {
   id: number | undefined;
   active: Active | null | undefined;
-  user: User | null | undefined;
+  user_id: number | null | undefined;
   type: string | undefined;
   action: string | undefined;
   created_at: Date | undefined;

@@ -1,12 +1,13 @@
+import { Decimal } from '@prisma/client/runtime/library';
 import Portfolio from './Portfolio';
 
 class Transaction {
   id: number;
   active: number;
-  port: Portfolio | null;
+  port?: Portfolio | null;
   port_numb: number | null;
   quota_count: number;
-  total_value: number;
+  total_value: Decimal;
   trade_date: Date;
 
   constructor(data: Transaction) {
