@@ -3,15 +3,10 @@ import Active from './Active';
 
 class Alert {
   id: number | undefined;
-<<<<<<< Updated upstream
-  active: Active | null | undefined;
-  user: User | null | undefined;
-=======
   active?: Active;
   active_id: number | undefined;
   user?: User
   user_id: number | null | undefined;
->>>>>>> Stashed changes
   type: string | undefined;
   action: string | undefined;
   created_at: Date | undefined;

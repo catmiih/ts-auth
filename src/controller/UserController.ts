@@ -20,6 +20,13 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
+router.post("/list", async (req, res) => {
+  const filter = new Filter(req.body);
+  console.log(filter)
+  const user = await userService.listUsers(filter);
+  res.json(user);
+});
+
 // Rota para atualizar um usuário por ID (POST)
 router.put("/:id", async (req, res) => {
   const userId = parseInt(req.params.id, 10);
