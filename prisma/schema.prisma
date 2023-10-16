@@ -114,4 +114,5 @@ model Alert {
   created_at DateTime
   message String
 
+  status Int
 }

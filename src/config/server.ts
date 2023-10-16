@@ -42,5 +42,5 @@ app.listen(PORT, () => {
   
   console.log(logo)
   console.log(`\x1b[33m Access API at: http://${HOST}:${PORT} \x1b[0m`)
-  console.log(`\x1b[33m Access pgAdmin at: https://${HOST}:5050 \x1b[0m`)
+  console.log(`\x1b[33m Access pgAdmin at: http://${HOST}:5050 \x1b[0m`)
 });
