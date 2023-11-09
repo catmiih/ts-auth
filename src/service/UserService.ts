@@ -2,6 +2,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import Filter from "../model/Filter";
 import User from "../model/User";
 import PortfolioService from "./PortfolioService";
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 const portfolioService = new PortfolioService();
@@ -10,6 +11,7 @@ class UserService {
   // Função para criar um novo usuário
   async createUser(data: User) {
     try{
+
       const person: Prisma.PersonCreateWithoutUserInput = {
         name: data.person?.name || "",
         birthday_date: data.person?.birthday_date || new Date(),
@@ -17,7 +19,7 @@ class UserService {
 
       const user = {
         username: data.username || "",
-        password: data.password || "",
+        password: await bcrypt.hash(data.password || "", 10) || "",
         email: data.email || "",
         account_status: data.account_status || "",
         created_at: new Date(),
