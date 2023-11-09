@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import setupRoutes from './routes';
+import session from 'express-session';
 
 const app = express();
 var cors = require('cors')
@@ -8,6 +9,14 @@ const apiKey = process.env.API_KEY;
 
 app.use(cors())
 dotenv.config();
+
+app.use(
+  session({
+    secret: 'auth',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 function authenticateAPIKey(req: Request, res: Response, next: Function) {
   const userApiKey = req.headers['api-key'];
