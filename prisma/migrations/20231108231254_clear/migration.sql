@@ -1,4 +1,37 @@
 -- CreateTable
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL,
+    "account_status" TEXT NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Person" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "birthday_date" TIMESTAMP(3) NOT NULL,
+    "userId" INTEGER,
+
+    CONSTRAINT "Person_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Portfolio" (
+    "id" SERIAL NOT NULL,
+    "port_value" DECIMAL(65,30) NOT NULL,
+    "income_value" DECIMAL(65,30) NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "risk" INTEGER NOT NULL,
+
+    CONSTRAINT "Portfolio_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Transaction" (
     "id" SERIAL NOT NULL,
     "active" INTEGER NOT NULL,
@@ -60,9 +93,16 @@ CREATE TABLE "Alert" (
     "action" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL,
     "message" TEXT NOT NULL,
+    "status" INTEGER NOT NULL,
 
     CONSTRAINT "Alert_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Person_userId_key" ON "Person"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Transaction_port_numb_key" ON "Transaction"("port_numb");
@@ -81,6 +121,12 @@ CREATE UNIQUE INDEX "Alert_activeid_key" ON "Alert"("activeid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Alert_userid_key" ON "Alert"("userid");
+
+-- AddForeignKey
+ALTER TABLE "Person" ADD CONSTRAINT "Person_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Portfolio" ADD CONSTRAINT "Portfolio_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_port_numb_fkey" FOREIGN KEY ("port_numb") REFERENCES "Portfolio"("id") ON DELETE SET NULL ON UPDATE CASCADE;
