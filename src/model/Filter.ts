@@ -1,5 +1,4 @@
 import Person from "./Person";
-import Portfolio from "./Portfolio";
 
 class Filter {
     id: number | undefined

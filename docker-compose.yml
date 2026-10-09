@@ -1,22 +1,22 @@
 version: '3'
 services:
   postgres:
-    image: postgres:latest
-    container_name: kitsura-postgres
+    image: postgres:17
+    container_name: start-postgres
     environment:
       POSTGRES_USER: [user]
       POSTGRES_PASSWORD: [password]
-      POSTGRES_DB: kitsuraproject
+      POSTGRES_DB: startproject
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
-    container_name: kitsura-pgadmin
+    container_name: start-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: [email pgadmin]
-      PGADMIN_DEFAULT_PASSWORD: [password pgadmin]
+      PGADMIN_DEFAULT_EMAIL: [pgadmin@email.com]
+      PGADMIN_DEFAULT_PASSWORD: [password]
     ports:
       - "5050:80"
     depends_on:

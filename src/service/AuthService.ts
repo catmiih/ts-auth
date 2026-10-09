@@ -17,8 +17,6 @@ class AuthService {
       where: { username },
       include: {
         person: true,
-        portfolio: true,
-        alert: true,
       },
     });
 
@@ -41,8 +39,6 @@ class AuthService {
       created_at: user.created_at,
       account_status: user.account_status,
       person: user.person,
-      portfolio: user.portfolio,
-      alert: [],
     };
 
     return simplifiedUser;

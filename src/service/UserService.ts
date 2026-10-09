@@ -1,11 +1,9 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import Filter from "../model/Filter";
 import User from "../model/User";
-import PortfolioService from "./PortfolioService";
 import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
-const portfolioService = new PortfolioService();
 
 class UserService {
   // Função para criar um novo usuário
@@ -25,15 +23,6 @@ class UserService {
         created_at: new Date(),
         person: {
           create: person,
-        },
-        portfolio: {
-          create: [
-            {
-              port_value: 0.0,
-              income_value: 0,
-              risk: 1,
-            },
-          ],
         },
       };
 
@@ -63,9 +52,6 @@ class UserService {
     const personData = await prisma.person.findUnique({
       where: {userId: filter.id}
     });
-
-    const portData = await portfolioService.getWallet(filter.id);
-
     
   if (userData && personData) {
     user = new User({
@@ -76,7 +62,6 @@ class UserService {
       created_at: userData.created_at,
       account_status: userData.account_status,
       person: personData,
-      portfolio: portData
     })
   }
 
@@ -105,8 +90,6 @@ class UserService {
         where: {userId: userData.id}
       });
   
-      const portData = await portfolioService.getWallet(userData.id);
-  
       if (userData && personData) {
         user = new User({
           id: userData.id,
@@ -116,7 +99,6 @@ class UserService {
           created_at: userData.created_at,
           account_status: userData.account_status,
           person: personData,
-          portfolio: portData
         })
 
         userList.push(user)
@@ -154,14 +136,6 @@ class UserService {
   // Função para excluir um usuário por ID
   async deleteUser(filter: Filter) {
     try{
-
-      await prisma.portfolio.deleteMany({
-        where: { userId: filter.id }
-      });
-  
-     await prisma.alert.deleteMany({
-        where: { userid: filter.id }
-      });
   
       await prisma.person.delete({
         where: { userId: filter.id }
